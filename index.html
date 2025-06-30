@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPGINSIDER - Breaking CPG News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1e3a8a;
+            --red: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        
+        .logo:hover { color: #f3f4f6; }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav a:hover { color: var(--red); }
+        
+        .subscribe-btn {
+            background: var(--red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .subscribe-btn:hover {
+            background: #b91c1c;
+            color: white;
+        }
+        
+        /* Breaking News */
+        .breaking-news {
+            background: var(--red);
+            color: white;
+            padding: 0.75rem 0;
+            overflow: hidden;
+        }
+        
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .breaking-label {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Main Content */
+        main { padding: 2rem 0; }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        /* Articles */
+        .featured-article {
+            background: linear-gradient(135deg, var(--navy) 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-article h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .featured-article .meta {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-article p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .articles-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .article-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-excerpt {
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 0.5rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .newsletter {
+            background: var(--gray-50);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .newsletter h3 {
+            color: var(--navy);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .newsletter p {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .newsletter button {
+            background: var(--navy);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        
+        .newsletter button:hover {
+            background: #1e40af;
+        }
+        
+        .trending {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .trending h3 {
+            color: var(--navy);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .trending-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+        
+        .trending-item h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+        
+        .trending-item p {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-article h1 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">CPGINSIDER</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#markets">Markets</a></li>
+                        <li><a href="#ma">M&A</a></li>
+                        <li><a href="#leadership">Leadership</a></li>
+                        <li><a href="#innovation">Innovation</a></li>
+                        <li><a href="#retail">Retail</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#subscribe" class="subscribe-btn">Subscribe</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <span class="breaking-label">Breaking:</span>
+                <span>Unilever Announces $3.2B Acquisition of Plant-Based Food Company • P&G Reports Record Q4 Earnings • Target Expands Private Label Wellness Line</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <article class="featured-article">
+                        <div class="category-tag">Breaking News</div>
+                        <h1>Unilever Completes Major Acquisition in Sustainable CPG Sector</h1>
+                        <div class="meta">By Sarah Johnson • 2 hours ago</div>
+                        <p>Consumer goods giant Unilever has finalized its $3.2 billion acquisition of leading plant-based food manufacturer GreenLeaf Foods, marking the company's largest investment in sustainable consumer products to date. The deal positions Unilever as a dominant player in the rapidly growing alternative protein market.</p>
+                    </article>
+
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="category-tag">Markets</div>
+                            <h2 class="article-title">P&G Stock Surges After Beating Q4 Earnings Expectations</h2>
+                            <div class="article-meta">By Michael Chen • 4 hours ago</div>
+                            <p class="article-excerpt">Procter & Gamble shares jumped 7% in after-hours trading following the company's announcement of record quarterly earnings, driven by strong performance in beauty and healthcare segments...</p>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="category-tag">Retail</div>
+                            <h2 class="article-title">Target Launches New Wellness Private Label Brand</h2>
+                            <div class="article-meta">By Lisa Rodriguez • 6 hours ago</div>
+                            <p class="article-excerpt">The retail giant unveiled "Everspring Wellness," featuring over 200 natural health and beauty products, as part of its strategy to capture growing consumer demand for clean-label alternatives...</p>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="category-tag">Leadership</div>
+                            <h2 class="article-title">Former Kraft Heinz CMO Named CEO of Emerging CPG Startup</h2>
+                            <div class="article-meta">By David Park • 8 hours ago</div>
+                            <p class="article-excerpt">Industry veteran Jennifer Walsh brings two decades of CPG experience to direct-to-consumer brand NutriFlow, which secured $50M in Series B funding last month...</p>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="category-tag">M&A</div>
+                            <h2 class="article-title">Private Equity Firm Acquires Premium Pet Food Brand</h2>
+                            <div class="article-meta">By Amanda Foster • 10 hours ago</div>
+                            <p class="article-excerpt">Blackstone Group completed its acquisition of organic pet food manufacturer PurePaws for an undisclosed amount, betting on continued growth in the premium pet care market...</p>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="newsletter">
+                        <h3>📧 Daily CPG Brief</h3>
+                        <p>Get the latest Consumer Packaged Goods industry news delivered to your inbox every morning at 6 AM EST.</p>
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit">Subscribe Free</button>
+                        <p style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">Join 25,000+ CPG professionals</p>
+                    </div>
+
+                    <div class="trending">
+                        <h3>🔥 Trending Stories</h3>
+                        <div class="trending-item">
+                            <h4>Coca-Cola Invests $200M in Plant-Based Alternatives</h4>
+                            <p>2,345 reads • 3 hours ago</p>
+                        </div>
+                        <div class="trending-item">
+                            <h4>Amazon Fresh Expands Private Label Portfolio</h4>
+                            <p>1,892 reads • 5 hours ago</p>
+                        </div>
+                        <div class="trending-item">
+                            <h4>CPG Startups Raise Record $12B in 2024</h4>
+                            <p>3,156 reads • 1 day ago</p>
+                        </div>
+                        <div class="trending-item">
+                            <h4>Walmart Partners with Local CPG Brands</h4>
+                            <p>987 reads • 2 days ago</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CPGINSIDER</h4>
+                    <p>Breaking CPG news first. Trusted by industry professionals worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Markets</a></li>
+                        <li><a href="#">M&A Activity</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Innovation</a></li>
+                        <li><a href="#">Retail News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Editorial Team</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">RSS Feed</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CPGINSIDER. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
